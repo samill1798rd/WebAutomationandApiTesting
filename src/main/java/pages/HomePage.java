@@ -10,7 +10,7 @@ public class HomePage {
   private Utils utils;
 
   //Locator
-  private By btnAddtoCardLocator = By.cssSelector("#homefeatured [data-id-product='1']");
+  private By btnAddtoCardLocator = By.cssSelector("#homefeatured [data-id-product='1'] > span");
   private By itemTshirtOverElementLocator = By.cssSelector("#homefeatured [alt='Faded Short Sleeve T-shirts']");
   private By addressTextLocator = By.xpath("//section[@id='block_contact_infos']//li[1]");
   private By telephoneTextLocator = By.xpath("//span[.='(347) 466-7432']");
@@ -20,74 +20,72 @@ public class HomePage {
   private By inputSearchLocator = By.id("search_query_top");
   private By btnSumitSearchLocator = By.name("submit_search");
 
-  public HomePage  (WebDriver driver){
+  public HomePage(WebDriver driver) {
     this.driver = driver;
     this.utils = new Utils(driver);
 
   }
 
-  public void scrollDownToLeftItem (){
+  public void scrollDownToLeftItem() {
     utils.runJavascriptExecutor("window.scrollBy(0,800)");
     utils.wait(5);
   }
 
-  public void scrollDownToFooter (){
+  public void scrollDownToFooter() {
     utils.runJavascriptExecutor("window.scrollBy(0,3000)");
   }
 
 
-  public void mouseOverLeftItem(){
+  public void mouseOverLeftItem() {
     Actions actions = new Actions(driver);
     var element = driver.findElement(itemTshirtOverElementLocator);
     actions.moveToElement(element).perform();
   }
 
-  public void clickToAddCardItem (){
+  public void clickToAddCardItem() {
+    utils.waitForClickableElement(btnAddtoCardLocator);
     utils.clickBtnElement(btnAddtoCardLocator);
-
   }
-  public String getTextAddCartSuccess(){
+
+  public String getTextAddCartSuccess() {
     utils.waitForVisibleElement(textCartSuccessLocator);
     return driver.findElement(textCartSuccessLocator).getText();
   }
 
   //test case delete from cart
-  public void clickToCloseModalCheckout(){
+  public void clickToCloseModalCheckout() {
     utils.waitForClickableElement(btnCloseModalSuccessLocator);
     utils.clickBtnElement(btnCloseModalSuccessLocator);
   }
-  public void scrollUp (){
+
+  public void scrollUp() {
     utils.runJavascriptExecutor("window.scrollBy(0,-1500)");
   }
 
-  public OrderPage clickToCart(){
+  public OrderPage clickToCart() {
     utils.waitForClickableElement(btnCartViewLocator);
     utils.clickBtnElement(btnCartViewLocator);
     return new OrderPage(driver);
   }
 
   //Text Search
-  public void insertTextToSearch(String value){
+  public void insertTextToSearch(String value) {
     driver.findElement(inputSearchLocator).sendKeys(value);
   }
 
-  public SearchOrderPage clickToSearchBotton(){
+  public SearchOrderPage clickToSearchBotton() {
     utils.waitForClickableElement(btnSumitSearchLocator);
     utils.clickBtnElement(btnSumitSearchLocator);
     return new SearchOrderPage(driver);
   }
 
-  public String getAddressText(){
+  public String getAddressText() {
     utils.waitForVisibleElement(addressTextLocator);
     return driver.findElement(addressTextLocator).getText();
   }
 
-  public String getTelephoneText(){
+  public String getTelephoneText() {
     utils.waitForVisibleElement(telephoneTextLocator);
     return driver.findElement(telephoneTextLocator).getText();
   }
-
-
-
-
 }

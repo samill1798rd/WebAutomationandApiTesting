@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 public class OrderTest extends BaseTests {
 
     //order
-    @Test
+    @Test(priority=1)
     public void testDeleteItemFromShoppingCart(){
        var orderPage = GetOrderPreconditionObj();
         orderPage.scrollToCenter();

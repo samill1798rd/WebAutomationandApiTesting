@@ -8,7 +8,7 @@ import static org.testng.Assert.assertTrue;
 public class SearchOrderTests extends BaseTests {
 
     //SearchOrder
-    @Test
+    @Test(priority=1)
     public void testSearchInStockItem(){
         homePage.insertTextToSearch("t-shirt");
         var serchOrderPage = homePage.clickToSearchBotton();
@@ -21,7 +21,7 @@ public class SearchOrderTests extends BaseTests {
                 "Alert text is incorrect");
     }
 
-    @Test
+    @Test(priority=2)
     public void testSearchIsNotInStockItem(){
         homePage.insertTextToSearch("test");
         var serchOrderPage = homePage.clickToSearchBotton();

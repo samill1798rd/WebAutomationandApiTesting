@@ -36,14 +36,13 @@ public class Utils {
     }
 
     public void waitForVisibleElement(By locator){
-        var wait = new WebDriverWait(driver, 10);
+        var wait = new WebDriverWait(driver, 50);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public void waitForClickableElement(By locator){
-        var wait = new WebDriverWait(driver, 10);
+        var wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-
 
 }

@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 public class HomeTest extends BaseTests {
 
     //HomePage
-    @Test
+    @Test(priority=1)
     public void testAddItemToShoppingCartSuccess(){
         homePage.scrollDownToLeftItem();
         homePage.mouseOverLeftItem();
@@ -20,7 +20,7 @@ public class HomeTest extends BaseTests {
     }
 
     //Store information
-    @Test
+    @Test(priority=2)
     public void testCheckAddressInformation(){
         homePage.scrollDownToFooter();
         assertTrue(homePage.getAddressText()
@@ -28,7 +28,7 @@ public class HomeTest extends BaseTests {
                 "Alert text is incorrect");
     }
 
-    @Test
+    @Test(priority=3)
     public void testCheckTelephoneNumberInformation(){
         homePage.scrollDownToFooter();
         assertEquals(homePage.getTelephoneText(),"(347) 466-7432");
