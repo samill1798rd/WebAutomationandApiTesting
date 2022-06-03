@@ -1,12 +1,9 @@
 package ApiTest;
 
-import ApiBase.ApiBase;
 import ApiFolder.ApiInteration;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 public class ApiTest {
 
     ApiInteration api = new ApiInteration();
