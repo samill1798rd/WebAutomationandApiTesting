@@ -28,7 +28,6 @@ public class HomePage {
 
   public void scrollDownToLeftItem() {
     utils.runJavascriptExecutor("window.scrollBy(0,800)");
-    utils.wait(5);
   }
 
   public void scrollDownToFooter() {
