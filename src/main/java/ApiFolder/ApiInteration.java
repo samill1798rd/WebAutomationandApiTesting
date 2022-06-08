@@ -1,26 +1,30 @@
 package ApiFolder;
 
-import ApiBase.ApiBase;
 
-public class ApiInteration extends ApiBase {
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.util.List;
+
+public class ApiInteration {
 
 
-    public String getWatherWhiteInformation(){
+    public void getWatherWhiteInformation(String resposndeBody){
 
+        var dtoCharacter = GetDtoList(resposndeBody);
         String birthDay =  "";
-        var dtoCharacter = GetDtoList(RequestApi(""));
 
         for (int i = 0; i < dtoCharacter.size() ; i++) {
-            System.out.println(dtoCharacter.get(i).birthday);
             birthDay = dtoCharacter.get(i).birthday;
         }
 
-        return birthDay;
+        System.out.println(birthDay); ;
     }
 
-    public void getallcharactersinformation(){
+    public void getallcharactersinformation(String resposndeBody){
 
-        var dtoCharacter = GetDtoList(RequestApi("RequestAll"));
+        var dtoCharacter = GetDtoList(resposndeBody);
 
         for (int i = 0; i < dtoCharacter.size() ; i++) {
             System.out.println("Character name: ".concat(dtoCharacter.get(i).name));
@@ -29,6 +33,16 @@ public class ApiInteration extends ApiBase {
 
         }
 
+    }
+    public List<CharacterDto> GetDtoList(String resposndeBody){
+
+        ObjectMapper objectMapper =  new ObjectMapper();
+
+        try {
+            return objectMapper.readValue(String.valueOf(resposndeBody), new TypeReference<List<CharacterDto>>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
